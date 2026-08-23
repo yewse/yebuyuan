@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="涂布面密度精密控制技术 - 示例笔记" />
+  <title>涂布面密度精密控制技术 - 叶卜源</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>⚡</text></svg>" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="header-content">
+        <a href="/" class="site-title">叶卜源</a>
+        <nav class="nav-menu">
+          <a href="/" class="nav-link">首页</a>
+          <a href="/about.html" class="nav-link">关于</a>
+          <a href="/notes.html" class="nav-link active">技术笔记</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <article>
+      <div class="article-header">
+        <span class="sample-note-badge">示例笔记</span>
+        <h1 class="article-title">涂布面密度精密控制技术</h1>
+        <div class="article-meta">
+          <time datetime="2026-07-10">2026年7月10日</time>
+          <span class="tag">涂布工艺</span>
+          <span class="tag">面密度控制</span>
+        </div>
+      </div>
+
+      <div class="article-content">
+        <p>涂布（Coating）是锂离子电池极片制造的第一道关键工序。在这一过程中，将调配好的浆料均匀涂覆在金属集流体（铜箔或铝箔）表面，形成一定厚度和面密度的活性物质涂层。涂布面密度的均匀性直接影响电池的容量一致性、内阻分布和循环寿命，是整个工艺链的基础。</p>
+
+        <h2>面密度的定义与重要性</h2>
+        <p>面密度（Areal Density / Coating Weight）指单位面积极片上涂层的质量，通常以 mg/cm² 或 g/m² 表示。例如，某正极片面密度为 25 mg/cm²，意味着每平方厘米集流体上涂覆了25毫克的正极材料（包括活性物质、导电剂、粘结剂）。</p>
+
+        <p>面密度均匀性的影响：</p>
+        <ul>
+          <li><strong>容量一致性</strong>：面密度不均导致电芯内部不同区域容量差异，影响整体性能</li>
+          <li><strong>内阻分布</strong>：局部面密度过高或过低会改变电流分布，造成局部过热或极化</li>
+          <li><strong>循环寿命</strong>：不均匀区域在长期循环中易发生加速衰减</li>
+          <li><strong>安全性</strong>：严重的面密度波动可能导致局部锂析出风险</li>
+        </ul>
+
+        <h2>涂布工艺的基本原理</h2>
+        <p>现代锂电池涂布主要采用<strong>狭缝挤压式涂布</strong>（Slot-Die Coating）技术。浆料通过精密的狭缝模头挤出，在刮刀和集流体之间的间隙中形成涂层。涂层厚度由以下因素共同决定：</p>
+        <ul>
+          <li>浆料流量（泵送速度）</li>
+          <li>基材运行速度（涂布速度）</li>
+          <li>刮刀间隙</li>
+          <li>浆料流变特性</li>
+        </ul>
+
+        <p>理想状态下，面密度可以用简化公式表示：</p>
+        <blockquote>
+          面密度 ∝ 浆料流量 / 涂布速度
+        </blockquote>
+
+        <h2>影响面密度均匀性的关键因素</h2>
+
+        <h3>1. 浆料流变特性</h3>
+        <p>浆料的黏度、触变性和流动性直接影响涂布质量。</p>
+        <ul>
+          <li><strong>黏度过高</strong>：浆料流动性差，难以均匀展开，可能产生条纹缺陷</li>
+          <li><strong>黏度过低</strong>：涂层易流挂，干燥后厚度不均</li>
+          <li><strong>触变性</strong>：浆料在剪切作用下黏度变化，影响涂布稳定性</li>
+          <li><strong>颗粒沉降</strong>：浆料储存或输送过程中颗粒沉降，导致固含量波动</li>
+        </ul>
+        <p><strong>控制方法</strong>：</p>
+        <ul>
+          <li>优化浆料配方（固含量、溶剂比例、分散剂用量）</li>
+          <li>控制制浆温度和搅拌时间</li>
+          <li>使用在线黏度监测，及时调整</li>
+          <li>定期搅拌浆料储罐，防止颗粒沉降</li>
+        </ul>
+
+        <h3>2. 刮刀间隙控制</h3>
+        <p>刮刀（Coating Blade）与集流体之间的间隙是决定湿涂层厚度的直接因素。间隙波动会直接体现为面密度波动。</p>
+        <ul>
+          <li><strong>机械精度</strong>：刮刀安装平行度、模头平整度要求极高（通常要求±5μm以内）</li>
+          <li><strong>基材张力</strong>：集流体张力不稳定会导致基材上下抖动，间隙波动</li>
+          <li><strong>刀刃磨损</strong>：长时间使用后刀刃磨损，影响涂层均匀性</li>
+        </ul>
+        <p><strong>控制方法</strong>：</p>
+        <ul>
+          <li>定期校准刮刀平行度</li>
+          <li>使用精密张力控制系统，保持基材张力稳定</li>
+          <li>定期检查和更换刮刀刀刃</li>
+          <li>采用激光或光学测量系统实时监测间隙</li>
+        </ul>
+
+        <h3>3. 泵送系统稳定性</h3>
+        <p>浆料通过精密泵输送到涂布模头，泵的脉动和流量波动会直接传递到涂层中。</p>
+        <ul>
+          <li><strong>蠕动泵</strong>：低成本但脉动大，适合小试线</li>
+          <li><strong>齿轮泵</strong>：中等脉动，应用较广</li>
+          <li><strong>螺杆泵</strong>：脉动小，精度高，适合高速量产线</li>
+        </ul>
+        <p><strong>控制方法</strong>：</p>
+        <ul>
+          <li>选择低脉动泵或增加脉动阻尼器</li>
+          <li>使用流量反馈控制系统，实时调整泵速</li>
+          <li>管路设计优化，减少压力波动</li>
+        </ul>
+
+        <h3>4. 基材张力与放卷控制</h3>
+        <p>集流体的张力直接影响涂布稳定性。张力过大或过小都会导致问题：</p>
+        <ul>
+          <li><strong>张力过大</strong>：基材拉伸变形，涂层产生应力，干燥后可能开裂</li>
+          <li><strong>张力过小</strong>：基材松弛，涂布过程中位置不稳定，面密度波动</li>
+          <li><strong>张力波动</strong>：放卷、涂布、收卷各区段张力不一致，导致涂层不均</li>
+        </ul>
+        <p><strong>控制方法</strong>：</p>
+        <ul>
+          <li>采用张力传感器闭环控制系统</li>
+          <li>使用自动纠偏系统，保持基材运行位置稳定</li>
+          <li>优化放卷和收卷张力曲线</li>
+        </ul>
+
+        <h3>5. 涂布速度与干燥匹配</h3>
+        <p>涂布速度不仅影响生产效率，也影响涂层质量。速度过快可能导致浆料展开不充分，速度过慢则影响产能。</p>
+        <p>同时，涂布速度必须与干燥能力匹配。如果干燥速度跟不上涂布速度，溶剂挥发不完全，会导致涂层厚度不均或产生气泡、针孔等缺陷。</p>
+        <p><strong>控制方法</strong>：</p>
+        <ul>
+          <li>根据浆料固含量和涂层厚度，计算合理的涂布速度</li>
+          <li>优化干燥温度曲线，确保溶剂逐步挥发</li>
+          <li>使用多段式干燥炉，前段低温预干、后段高温固化</li>
+        </ul>
+
+        <h2>在线监测与反馈控制</h2>
+        <p>现代涂布线越来越多地采用在线监测系统，实时检测面密度和涂层质量，实现闭环控制。</p>
+
+        <h3>β射线面密度检测</h3>
+        <p>利用β射线穿透涂层时的衰减，实时测量面密度。精度高、响应快，是最常用的在线检测方法。</p>
+
+        <h3>激光厚度测量</h3>
+        <p>通过激光三角测量法，检测涂层厚度。结合基材厚度，可以反推面密度变化。</p>
+
+        <h3>机器视觉检测</h3>
+        <p>使用高速相机和图像分析算法，检测涂层表面缺陷（如针孔、条纹、划痕），辅助质量控制。</p>
+
+        <h3>闭环反馈控制</h3>
+        <p>将在线检测数据反馈到泵送系统或涂布速度控制系统，自动调整工艺参数，减少面密度波动。</p>
+
+        <h2>面密度偏差的统计分析</h2>
+        <p>在生产过程中，需要定期统计面密度数据，评估工艺能力：</p>
+        <ul>
+          <li><strong>均值偏差</strong>：实际面密度与目标值的偏离程度</li>
+          <li><strong>标准差（σ）</strong>：反映面密度波动幅度</li>
+          <li><strong>Cpk值</strong>：工艺能力指数，通常要求 Cpk ≥ 1.33</li>
+        </ul>
+        <p>通过SPC（Statistical Process Control）控制图，可以实时监控工艺稳定性，及时发现异常趋势。</p>
+
+        <h2>典型问题与排查</h2>
+
+        <h3>纵向条纹（机器方向MD波动）</h3>
+        <p><strong>可能原因</strong>：泵送脉动、浆料颗粒沉降、干燥温度波动<br />
+        <strong>排查方法</strong>：检查泵送系统压力曲线，测试浆料黏度稳定性，记录干燥炉温度数据</p>
+
+        <h3>横向不均（横幅方向CD波动）</h3>
+        <p><strong>可能原因</strong>：刮刀间隙不平行、模头堵塞、张力分布不均<br />
+        <strong>排查方法</strong>：校准刮刀平行度，清洗模头，检查张力传感器</p>
+
+        <h3>边缘效应（涂层边缘面密度偏高或偏低）</h3>
+        <p><strong>可能原因</strong>：模头设计问题、浆料在边缘流动特性不同、干燥风场不均匀<br />
+        <strong>排查方法</strong>：优化模头结构，调整挡板位置，改善干燥风场分布</p>
+
+        <h2>总结</h2>
+        <p>涂布面密度控制是一个多因素耦合的复杂问题，需要从浆料制备、设备精度、过程控制、在线监测等多个维度系统优化。</p>
+        <p>在实际生产中，工艺工程师需要建立完整的数据跟踪体系，通过DOE实验、根因分析和持续改进，逐步提升工艺稳定性。随着智能制造和数字化转型的推进，基于大数据和机器学习的涂布工艺优化也成为行业前沿的研究方向。</p>
+
+        <hr style="margin: 3rem 0; border: none; border-top: 1px solid var(--color-border);" />
+        
+        <p style="color: var(--color-text-tertiary); font-size: 0.9375rem;"><em>本文内容基于公开的行业知识和通用工艺原理，仅供学习参考，不涉及任何特定企业的机密工艺参数。</em></p>
+
+        <p style="margin-top: 2rem;"><a href="/notes.html">← 返回技术笔记列表</a></p>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 叶卜源 | 部署于 <a href="https://pages.cloudflare.com" target="_blank" rel="noopener">Cloudflare Pages</a></p>
+    </div>
+  </footer>
+</body>
+</html>

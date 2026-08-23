@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="叶卜源的个人技术博客 - 锂离子电池工艺工程" />
-  <title>叶卜源 - 锂电高级工艺工程师</title>
+  <meta name="description" content="技术笔记 - 锂离子电池工艺工程" />
+  <title>技术笔记 - 叶卜源</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>⚡</text></svg>" />
   <link rel="stylesheet" href="/styles.css" />
 </head>
@@ -14,45 +14,49 @@
       <div class="header-content">
         <a href="/" class="site-title">叶卜源</a>
         <nav class="nav-menu">
-          <a href="/" class="nav-link active">首页</a>
+          <a href="/" class="nav-link">首页</a>
           <a href="/about.html" class="nav-link">关于</a>
-          <a href="/notes.html" class="nav-link">技术笔记</a>
+          <a href="/notes.html" class="nav-link active">技术笔记</a>
         </nav>
       </div>
     </div>
   </header>
 
   <main class="container">
-    <section class="hero">
-      <h1 class="name">叶卜源</h1>
-      <p class="title">锂电高级工艺工程师</p>
-      <p class="tagline">专注于电极制造工艺优化、良率提升与规模化生产技术。从涂布到化成，将材料科学转化为可量产的工业流程。</p>
-    </section>
+    <div class="notes-list">
+      <h1 class="name">技术笔记</h1>
+      <p class="tagline" style="margin-bottom: 3rem;">记录锂电池制造工艺的学习与思考，分享通用的工程原理和实践经验。</p>
 
-    <section class="notes-section">
-      <div class="section-header">
-        <h2>最新笔记</h2>
-        <a href="/notes.html" class="view-all">查看全部 →</a>
-      </div>
-      
       <article class="note-card">
         <time class="note-date" datetime="2026-08-15">2026年8月15日</time>
         <h3 class="note-title"><a href="/notes/formation-current-strategy.html">锂电池化成电流策略设计原理</a></h3>
         <p class="note-excerpt">化成工序是锂离子电池首次充放电过程，直接影响SEI膜质量和电池性能。本文讨论小电流化成、多阶梯电流控制以及温度管理的工程实践。</p>
+        <div style="margin-top: 0.75rem;">
+          <span class="tag">化成工艺</span>
+          <span class="tag">SEI膜</span>
+        </div>
       </article>
 
       <article class="note-card">
         <time class="note-date" datetime="2026-07-28">2026年7月28日</time>
         <h3 class="note-title"><a href="/notes/calendaring-density-porosity.html">辊压工艺中的压实密度与孔隙率平衡</a></h3>
         <p class="note-excerpt">辊压是控制电极物理特性的关键环节。过高的压实密度会降低孔隙率影响电解液渗透，过低则损害能量密度。探讨工艺窗口的确定方法。</p>
+        <div style="margin-top: 0.75rem;">
+          <span class="tag">辊压工艺</span>
+          <span class="tag">压实密度</span>
+        </div>
       </article>
 
       <article class="note-card">
         <time class="note-date" datetime="2026-07-10">2026年7月10日</time>
         <h3 class="note-title"><a href="/notes/coating-weight-control.html">涂布面密度精密控制技术</a></h3>
         <p class="note-excerpt">涂布面密度均匀性直接影响电池容量一致性。从浆料流变特性、刮刀间隙控制到张力系统调节，全面分析涂布工艺的关键控制参数。</p>
+        <div style="margin-top: 0.75rem;">
+          <span class="tag">涂布工艺</span>
+          <span class="tag">面密度控制</span>
+        </div>
       </article>
-    </section>
+    </div>
   </main>
 
   <footer class="site-footer">
