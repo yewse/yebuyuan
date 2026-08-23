@@ -11,6 +11,8 @@ Oliver 的个人技术博客，专注于锂离子电池工艺工程领域的知�
 
 本网站使用 Eleventy 静态站点生成器 + Decap CMS 内容管理系统。推送到 `main` 分支后，Cloudflare Pages 会自动构建和部署。
 
+**⚠️ 部署后必须配置**: 在 Cloudflare Pages 设置中添加环境变量 `GITHUB_CLIENT_ID` 和 `GITHUB_CLIENT_SECRET`（从 https://github.com/settings/developers 创建 OAuth App，callback URL 设为 `https://0liver.pages.dev/api/auth`）
+
 ## ✍️ 如何发布新文章
 
 ### 方法一：通过 Web 管理界面（推荐）
