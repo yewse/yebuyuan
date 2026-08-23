@@ -1,0 +1,23 @@
+---
+layout: base
+---
+<article>
+  <div class="article-header">
+    {% if sample %}<span class="sample-note-badge">示例笔记</span>{% endif %}
+    <h1 class="article-title">{{ title }}</h1>
+    <div class="article-meta">
+      <time datetime="{{ date | isoDate }}">{{ date | readableDate }}</time>
+      {% if tags %}
+        {% for tag in tags %}
+          <span class="tag">{{ tag }}</span>
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="article-content">
+    {{ content | safe }}
+    
+    <p style="margin-top: 2rem;"><a href="/notes/">← 返回笔记</a></p>
+  </div>
+</article>

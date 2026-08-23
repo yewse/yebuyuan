@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="{{ description or 'Oliver的个人技术博客 - 锂离子电池工艺工程' }}" />
+  <title>{{ title }}{% if title != 'Oliver' %} - Oliver{% endif %}</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>⚡</text></svg>" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <canvas id="energy-canvas"></canvas>
+  <script>
+    // 锂离子能量线动画
+    const canvas = document.getElementById('energy-canvas');
+    const ctx = canvas.getContext('2d');
+    
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+    
+    const particles = [];
+    const particleCount = 40;
+    
+    class Particle {
+      constructor() {
+        this.reset();
+      }
+      
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.vx = (Math.random() - 0.5) * 0.5;
+        this.vy = (Math.random() - 0.5) * 0.5;
+        this.radius = Math.random() * 2 + 1;
+        this.color = Math.random() > 0.5 ? '#c8733a' : '#0891b2';
+      }
+      
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        
+        if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+      }
+      
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+      }
+    }
+    
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new Particle());
+    }
+    
+    function connectParticles() {
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          
+          if (distance < 150) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            const opacity = (1 - distance / 150) * 0.3;
+            ctx.strokeStyle = `rgba(200, 115, 58, ${opacity})`;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
+        }
+      }
+    }
+    
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      particles.forEach(particle => {
+        particle.update();
+        particle.draw();
+      });
+      
+      connectParticles();
+      requestAnimationFrame(animate);
+    }
+    
+    animate();
+  </script>
+  <header class="site-header">
+    <div class="container">
+      <div class="header-content">
+        <a href="/" class="site-title">Oliver</a>
+        <nav class="nav-menu">
+          <a href="/" class="nav-link{% if page.url == '/' %} active{% endif %}">首页</a>
+          <a href="/about/" class="nav-link{% if page.url == '/about/' %} active{% endif %}">关于</a>
+          <a href="/notes/" class="nav-link{% if page.url == '/notes/' or '/posts/' in page.url %} active{% endif %}">技术笔记</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    {{ content | safe }}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 Oliver | 部署于 <a href="https://pages.cloudflare.com" target="_blank" rel="noopener">Cloudflare Pages</a></p>
+    </div>
+  </footer>
+</body>
+</html>

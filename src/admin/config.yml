@@ -1,0 +1,28 @@
+backend:
+  name: github
+  repo: yewse/yebuyuan
+  branch: main
+  base_url: https://0liver.pages.dev
+  auth_endpoint: /api/auth
+
+media_folder: "src/assets/uploads"
+public_folder: "/assets/uploads"
+
+locale: zh_Hans
+
+collections:
+  - name: "posts"
+    label: "技术笔记"
+    folder: "src/posts"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "yaml-frontmatter"
+    fields:
+      - { label: "标题", name: "title", widget: "string" }
+      - { label: "发布日期", name: "date", widget: "datetime", format: "YYYY-MM-DD", dateFormat: "YYYY-MM-DD", timeFormat: false }
+      - { label: "摘要", name: "summary", widget: "text", required: true }
+      - { label: "标签", name: "tags", widget: "list", required: false }
+      - { label: "示例笔记", name: "sample", widget: "boolean", default: false, required: false }
+      - { label: "布局", name: "layout", widget: "hidden", default: "post" }
+      - { label: "内容", name: "body", widget: "markdown" }

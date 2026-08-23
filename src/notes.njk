@@ -1,0 +1,26 @@
+---
+layout: base
+title: 技术笔记
+description: 技术笔记 - 锂离子电池工艺工程
+permalink: /notes/
+---
+
+<div class="notes-list">
+  <h1 class="name">技术笔记</h1>
+  <p class="tagline" style="margin-bottom: 3rem;">电池制造工艺笔记。工艺原理、问题分析、工程实践。</p>
+
+  {% for post in collections.posts %}
+  <article class="note-card">
+    <time class="note-date" datetime="{{ post.date | isoDate }}">{{ post.date | readableDate }}</time>
+    <h3 class="note-title"><a href="{{ post.url }}">{{ post.data.title }}</a></h3>
+    <p class="note-excerpt">{{ post.data.summary }}</p>
+    {% if post.data.tags %}
+      <div style="margin-top: 0.75rem;">
+        {% for tag in post.data.tags %}
+          <span class="tag">{{ tag }}</span>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </article>
+  {% endfor %}
+</div>
