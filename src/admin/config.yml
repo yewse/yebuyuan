@@ -11,7 +11,6 @@ public_folder: "/assets/uploads"
 locale: zh_Hans
 
 collections:
-  # 技术笔记
   - name: "posts"
     label: "技术笔记"
     folder: "src/posts"
@@ -22,89 +21,56 @@ collections:
     editor:
       preview: true
     fields:
-      - { label: "标题", name: "title", widget: "string", hint: "文章标题" }
-      - { label: "发布日期", name: "date", widget: "datetime", format: "YYYY-MM-DD", dateFormat: "YYYY-MM-DD", timeFormat: false }
-      - { label: "摘要", name: "summary", widget: "text", required: true, hint: "显示在文章列表的简短描述" }
-      - { label: "封面图", name: "cover", widget: "image", required: false, hint: "选择封面图片（可选）" }
-      - { label: "装饰色", name: "accent", widget: "select", required: false, default: "copper", options: [{label: "铜箔橙", value: "copper"}, {label: "电解液青", value: "electrolyte"}], hint: "文章强调色" }
-      - { label: "标签", name: "tags", widget: "list", required: false, hint: "添加相关标签" }
-      - { label: "示例笔记", name: "sample", widget: "boolean", default: false, required: false }
-      - { label: "布局", name: "layout", widget: "hidden", default: "post" }
+      - label: "标题"
+        name: "title"
+        widget: "string"
+        hint: "文章标题"
+      - label: "发布日期"
+        name: "date"
+        widget: "datetime"
+        format: "YYYY-MM-DD"
+        date_format: "YYYY-MM-DD"
+        time_format: false
+      - label: "摘要"
+        name: "summary"
+        widget: "text"
+        required: true
+        hint: "显示在文章列表的简短描述"
+      - label: "封面图"
+        name: "cover"
+        widget: "image"
+        required: false
+        hint: "选择封面图片（可选）"
+      - label: "装饰色"
+        name: "accent"
+        widget: "select"
+        required: false
+        default: "copper"
+        options:
+          - label: "铜箔橙"
+            value: "copper"
+          - label: "电解液青"
+            value: "electrolyte"
+        hint: "文章强调色"
+      - label: "标签"
+        name: "tags"
+        widget: "list"
+        required: false
+        hint: "添加相关标签"
+      - label: "示例笔记"
+        name: "sample"
+        widget: "boolean"
+        default: false
+        required: false
+      - label: "布局"
+        name: "layout"
+        widget: "hidden"
+        default: "post"
       - label: "内容"
         name: "body"
         widget: "markdown"
-        hint: "使用Markdown编写文章。可插入装饰块：提示框、引用、数据卡片等"
-        buttons:
-          - bold
-          - italic
-          - code
-          - link
-          - heading-two
-          - heading-three
-          - quote
-          - bulleted-list
-          - numbered-list
-        editor_components:
-          - label: "提示框"
-            id: "callout"
-            icon: "info-circle"
-            pattern: /^:::callout\s+(\w+)\s*\n([\s\S]*?)\n:::$/
-            fields:
-              - { label: "类型", name: "type", widget: "select", options: ["info", "warning", "success", "danger"], default: "info" }
-              - { label: "内容", name: "content", widget: "text" }
-            from_block: match => ({
-              type: match[1],
-              content: match[2]
-            })
-            to_block: data => `:::callout ${data.type}\n${data.content}\n:::`
-            to_preview: data => `<div class="callout callout-${data.type}">${data.content}</div>`
-          - label: "铜箔引用"
-            id: "pullquote"
-            icon: "quote-right"
-            pattern: /^:::\s*pullquote\s*\n([\s\S]*?)\n:::$/
-            fields:
-              - { label: "引用文字", name: "quote", widget: "text" }
-            from_block: match => ({
-              quote: match[1]
-            })
-            to_block: data => `:::pullquote\n${data.quote}\n:::`
-            to_preview: data => `<div class="pullquote">${data.quote}</div>`
-          - label: "数据卡片"
-            id: "datacard"
-            icon: "table"
-            pattern: /^:::\s*datacard\s*\n([\s\S]*?)\n:::$/
-            fields:
-              - { label: "标签", name: "label", widget: "string" }
-              - { label: "数值", name: "value", widget: "string" }
-              - { label: "单位", name: "unit", widget: "string", required: false }
-            from_block: match => {
-              const lines = match[1].trim().split('\n');
-              return {
-                label: lines[0] || '',
-                value: lines[1] || '',
-                unit: lines[2] || ''
-              };
-            }
-            to_block: data => `:::datacard\n${data.label}\n${data.value}\n${data.unit || ''}\n:::`
-            to_preview: data => `<div class="datacard"><div class="label">${data.label}</div><div class="value">${data.value}${data.unit ? ' ' + data.unit : ''}</div></div>`
-          - label: "图片图注"
-            id: "figure"
-            icon: "image"
-            pattern: /^:::\s*figure\s*\n([\s\S]*?)\n:::$/
-            fields:
-              - { label: "图片", name: "src", widget: "image" }
-              - { label: "图注", name: "caption", widget: "string" }
-            from_block: match => {
-              const lines = match[1].trim().split('\n');
-              return {
-                src: lines[0] || '',
-                caption: lines[1] || ''
-              };
-            }
-            to_block: data => `:::figure\n${data.src}\n${data.caption}\n:::`
-            to_preview: data => `<figure><img src="${data.src}" alt="${data.caption}"><figcaption>${data.caption}</figcaption></figure>`
+        hint: "使用Markdown编写文章。可手动插入装饰块（见文档）"
 
-  # 首页
   - name: "homepage"
     label: "首页"
     files:
@@ -112,13 +78,31 @@ collections:
         name: "home"
         file: "src/content/home.yml"
         fields:
-          - { label: "名称", name: "name", widget: "string", default: "Oliver", hint: "显示在首页的名称" }
-          - { label: "职位", name: "title", widget: "string", default: "锂电高级工艺工程师" }
-          - { label: "简介", name: "tagline", widget: "text", hint: "首页Hero区的简短介绍" }
-          - { label: "显示最新笔记", name: "show_latest_posts", widget: "boolean", default: true }
-          - { label: "最新笔记数量", name: "latest_posts_count", widget: "number", default: 3, value_type: "int", min: 1, max: 10 }
+          - label: "名称"
+            name: "name"
+            widget: "string"
+            default: "Oliver"
+            hint: "显示在首页的名称"
+          - label: "职位"
+            name: "title"
+            widget: "string"
+            default: "锂电高级工艺工程师"
+          - label: "简介"
+            name: "tagline"
+            widget: "text"
+            hint: "首页Hero区的简短介绍"
+          - label: "显示最新笔记"
+            name: "show_latest_posts"
+            widget: "boolean"
+            default: true
+          - label: "最新笔记数量"
+            name: "latest_posts_count"
+            widget: "number"
+            default: 3
+            value_type: "int"
+            min: 1
+            max: 10
 
-  # 个人介绍
   - name: "about"
     label: "个人介绍"
     files:
@@ -126,11 +110,20 @@ collections:
         name: "about"
         file: "src/content/about.md"
         fields:
-          - { label: "页面标题", name: "title", widget: "string", default: "关于我" }
-          - { label: "头像图片", name: "portrait", widget: "image", required: false, hint: "可选的头像照片" }
-          - { label: "内容", name: "body", widget: "markdown", hint: "使用Markdown编写关于页内容。作者署名为Oliver，不要使用真实姓名。" }
+          - label: "页面标题"
+            name: "title"
+            widget: "string"
+            default: "关于我"
+          - label: "头像图片"
+            name: "portrait"
+            widget: "image"
+            required: false
+            hint: "可选的头像照片"
+          - label: "内容"
+            name: "body"
+            widget: "markdown"
+            hint: "使用Markdown编写关于页内容。作者署名为Oliver，不要使用真实姓名。"
 
-  # 画廊
   - name: "gallery"
     label: "画廊"
     folder: "src/gallery"
@@ -139,9 +132,29 @@ collections:
     extension: "md"
     format: "yaml-frontmatter"
     fields:
-      - { label: "图片", name: "image", widget: "image" }
-      - { label: "标题", name: "title", widget: "string" }
-      - { label: "描述", name: "caption", widget: "text", required: false }
-      - { label: "拍摄日期", name: "date", widget: "datetime", format: "YYYY-MM-DD", dateFormat: "YYYY-MM-DD", timeFormat: false }
-      - { label: "标签", name: "tags", widget: "list", required: false }
-      - { label: "排序", name: "order", widget: "number", default: 0, value_type: "int", hint: "数字越小越靠前" }
+      - label: "图片"
+        name: "image"
+        widget: "image"
+      - label: "标题"
+        name: "title"
+        widget: "string"
+      - label: "描述"
+        name: "caption"
+        widget: "text"
+        required: false
+      - label: "拍摄日期"
+        name: "date"
+        widget: "datetime"
+        format: "YYYY-MM-DD"
+        date_format: "YYYY-MM-DD"
+        time_format: false
+      - label: "标签"
+        name: "tags"
+        widget: "list"
+        required: false
+      - label: "排序"
+        name: "order"
+        widget: "number"
+        default: 0
+        value_type: "int"
+        hint: "数字越小越靠前"
