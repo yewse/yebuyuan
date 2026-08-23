@@ -5,11 +5,12 @@ description: Oliver的个人技术博客 - 锂离子电池工艺工程
 ---
 
 <section class="hero">
-  <h1 class="name">Oliver</h1>
-  <p class="title">锂电高级工艺工程师</p>
-  <p class="tagline">电极制造全流程工艺开发。涂布、辊压、化成——从浆料流变到SEI膜生长，将材料科学落地为可控、可重复的量产工艺。</p>
+  <h1 class="name">{{ home.name }}</h1>
+  <p class="title">{{ home.title }}</p>
+  <p class="tagline">{{ home.tagline }}</p>
 </section>
 
+{% if home.show_latest_posts %}
 <section class="notes-section">
   <div class="section-header">
     <h2>最新笔记</h2>
@@ -17,7 +18,7 @@ description: Oliver的个人技术博客 - 锂离子电池工艺工程
   </div>
   
   {% for post in collections.posts | reverse %}
-  {% if loop.index <= 3 %}
+  {% if loop.index <= home.latest_posts_count %}
   <article class="note-card">
     <time class="note-date" datetime="{{ post.date | isoDate }}">{{ post.date | readableDate }}</time>
     <h3 class="note-title"><a href="{{ post.url }}">{{ post.data.title }}</a></h3>
@@ -26,3 +27,4 @@ description: Oliver的个人技术博客 - 锂离子电池工艺工程
   {% endif %}
   {% endfor %}
 </section>
+{% endif %}

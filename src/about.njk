@@ -5,30 +5,15 @@ description: 关于 Oliver - 锂离子电池高级工艺工程师
 ---
 
 <article class="about-content">
-  <h1 class="name">关于我</h1>
+  <h1 class="name">{{ aboutContent.title }}</h1>
   
-  <h2>专业背景</h2>
-  <p>锂离子电池高级工艺工程师。从小试到量产，专注将材料体系转化为稳定的制造工艺。工艺细节决定性能、一致性与成本。</p>
-
-  <h2>核心技术领域</h2>
-  <ul>
-    <li><strong>涂布工艺</strong> - 浆料流变特性控制、面密度均匀性优化、涂布速度与质量平衡</li>
-    <li><strong>辊压工艺</strong> - 压实密度设计、孔隙率调控、极片物理特性优化</li>
-    <li><strong>分切工艺</strong> - 刀具选型、毛刺控制、尺寸精度管理</li>
-    <li><strong>卷绕/叠片工艺</strong> - 对齐精度、张力控制、电芯内部应力分布</li>
-    <li><strong>注液与浸润</strong> - 电解液配方适配性、浸润时间优化、真空度控制</li>
-    <li><strong>化成工艺</strong> - 首次充放电策略、SEI膜形成控制、温度管理</li>
-    <li><strong>老化与分容</strong> - 自放电筛选、容量分档、性能测试</li>
-    <li><strong>良率与SPC</strong> - 统计过程控制、缺陷根因分析、工艺能力提升</li>
-  </ul>
-
-  <h2>工作理念</h2>
-  <p>电池制造是系统工程。单点失控会在下游放大。通过DOE、过程监控和统计分析收窄工艺窗口，用数据而非经验驱动改进。</p>
-
-  <p>工艺优化需要跨部门协作——材料、设备、质量形成闭环，才能实现可持续的提升。</p>
-
-  <h2>关于本站</h2>
-  <p>工艺笔记本。记录电池制造中的工艺原理、问题分析和工程实践。内容基于公开知识和通用原理，不涉及特定企业的机密配方。</p>
+  {% if aboutContent.portrait %}
+  <div class="portrait-wrapper">
+    <img src="{{ aboutContent.portrait }}" alt="Oliver" class="portrait-image">
+  </div>
+  {% endif %}
+  
+  {{ aboutContent.content | safe }}
 
   <div class="contact-info">
     <h2>联系方式</h2>

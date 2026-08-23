@@ -1,0 +1,109 @@
+---
+layout: base
+title: 画廊
+description: 工艺与实验室 - 图片画廊
+permalink: /gallery/
+---
+
+<div class="gallery-page">
+  <h1 class="name">画廊</h1>
+  <p class="tagline" style="margin-bottom: 3rem;">工艺与实验室的视觉记录</p>
+
+  {% if collections.gallery.length > 0 %}
+  <div class="gallery-grid">
+    {% for item in collections.gallery %}
+    <div class="gallery-item" data-index="{{ loop.index0 }}">
+      <img src="{{ item.data.image }}" alt="{{ item.data.title }}" loading="lazy">
+      <div class="gallery-overlay">
+        <h3>{{ item.data.title }}</h3>
+        {% if item.data.caption %}
+        <p>{{ item.data.caption }}</p>
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" aria-label="关闭">&times;</button>
+    <button class="lightbox-prev" aria-label="上一张">‹</button>
+    <button class="lightbox-next" aria-label="下一张">›</button>
+    <div class="lightbox-content">
+      <img src="" alt="" id="lightbox-image">
+      <div class="lightbox-caption">
+        <h3 id="lightbox-title"></h3>
+        <p id="lightbox-description"></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightbox-image');
+    const lightboxTitle = document.getElementById('lightbox-title');
+    const lightboxDescription = document.getElementById('lightbox-description');
+    const images = [
+      {% for item in collections.gallery %}
+      {
+        src: "{{ item.data.image }}",
+        title: "{{ item.data.title }}",
+        caption: "{{ item.data.caption | default('') }}"
+      }{% if not loop.last %},{% endif %}
+      {% endfor %}
+    ];
+    let currentIndex = 0;
+
+    function showLightbox(index) {
+      currentIndex = index;
+      const img = images[index];
+      lightboxImage.src = img.src;
+      lightboxImage.alt = img.title;
+      lightboxTitle.textContent = img.title;
+      lightboxDescription.textContent = img.caption;
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function showNext() {
+      currentIndex = (currentIndex + 1) % images.length;
+      showLightbox(currentIndex);
+    }
+
+    function showPrev() {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      showLightbox(currentIndex);
+    }
+
+    galleryItems.forEach((item, index) => {
+      item.addEventListener('click', () => showLightbox(index));
+    });
+
+    document.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+    document.querySelector('.lightbox-next').addEventListener('click', showNext);
+    document.querySelector('.lightbox-prev').addEventListener('click', showPrev);
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (!lightbox.classList.contains('active')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') showNext();
+      if (e.key === 'ArrowLeft') showPrev();
+    });
+  </script>
+  {% else %}
+  <div class="empty-gallery">
+    <p>画廊暂无内容。</p>
+    <p>使用 <a href="/admin/">管理后台</a> 添加图片。</p>
+  </div>
+  {% endif %}
+</div>
