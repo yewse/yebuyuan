@@ -29,12 +29,12 @@ eleventyExcludeFromCollections: true
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  {%- for post in collections.posts %}
+{%- for post in collections.posts %}
   <url>
     <loc>https://0liver.pages.dev{{ post.url }}</loc>
     <lastmod>{{ post.date | isoDate }}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  {%- endfor %}
+{%- endfor %}
 </urlset>
