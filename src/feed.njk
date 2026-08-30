@@ -1,0 +1,24 @@
+---
+permalink: /feed.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Oliver - 锂电工艺工程笔记</title>
+    <description>锂离子电池制造工艺技术笔记 - 涂布、辊压、化成及工艺优化</description>
+    <link>https://0liver.pages.dev/</link>
+    <atom:link href="https://0liver.pages.dev/feed.xml" rel="self" type="application/rss+xml"/>
+    <language>zh-CN</language>
+    <lastBuildDate>{{ collections.posts[0].date.toUTCString() }}</lastBuildDate>
+    {%- for post in collections.posts | reverse %}
+    <item>
+      <title>{{ post.data.title }}</title>
+      <description>{{ post.data.summary }}</description>
+      <link>https://0liver.pages.dev{{ post.url }}</link>
+      <guid isPermaLink="true">https://0liver.pages.dev{{ post.url }}</guid>
+      <pubDate>{{ post.date.toUTCString() }}</pubDate>
+    </item>
+    {%- endfor %}
+  </channel>
+</rss>

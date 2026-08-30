@@ -4,7 +4,25 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="{{ description or 'Oliver的个人技术博客 - 锂离子电池工艺工程' }}" />
-  <title>{{ title }}{% if title != 'Oliver' %} - Oliver{% endif %}</title>
+  <title>{{ title }}</title>
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="{% if layout == 'post' %}article{% else %}website{% endif %}" />
+  <meta property="og:title" content="{{ title }}" />
+  <meta property="og:description" content="{{ description or summary or 'Oliver的个人技术博客 - 锂离子电池工艺工程' }}" />
+  <meta property="og:url" content="https://0liver.pages.dev{{ page.url }}" />
+  <meta property="og:site_name" content="Oliver - 锂电工艺工程" />
+  <meta property="og:locale" content="zh_CN" />
+  {% if cover %}<meta property="og:image" content="https://0liver.pages.dev{{ cover }}" />{% endif %}
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="{{ title }}" />
+  <meta name="twitter:description" content="{{ description or summary or 'Oliver的个人技术博客 - 锂离子电池工艺工程' }}" />
+  
+  <!-- RSS Feed -->
+  <link rel="alternate" type="application/rss+xml" title="Oliver - 技术笔记订阅" href="/feed.xml" />
+  
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>⚡</text></svg>" />
   <link rel="stylesheet" href="/styles.css" />
 </head>
